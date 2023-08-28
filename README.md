@@ -24,10 +24,19 @@ I can use the JPA annotation ***@GeneratedValue(strategy = GenerationType.IDENTI
 This will provide an ID taken the last used ID into account + 1.
 
 #### How to use and define repositories and relevant query methods using Spring Data JPAs repository pattern
-How you did that in your code
+To define a repository I use the JPA annotation ***@Repository***
+which defines the Java interface as a Repository and therefore recognizable by the database.
+The repository interface is extended with JpaRepository from Spring Data JPA.
 
 #### How to write simple "integration" tests, using H2 as a mock-database instead of MySQL
-How you did that in your code
+To create tests I am using the annotation from Spring Boot JPA ***@DataJpaTest***.
+In these tests I can make an instance of my repositories and directly test the data in my code, 
+instead of having to write SQL statements etc.
+From the instance of a repository I have easy access to the belonging entity of the repository, given as a list.
 
 #### How to add (dev) connection details for you local MySQL database
-How you did that
+To connect to the database I am using the file **aplication.properties**, 
+where I can input the needed information to connect, such as schema-name, login and password.
+I do this by inputting **spring.datasource.url=${JDBC_DATABASE_URL}**
+which gives the url. It looks for the information in a hidden folder, so only admin (me) can access it.
+The same is done with the username and password.

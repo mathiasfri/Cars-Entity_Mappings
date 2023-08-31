@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Member {
+public class Member extends AdminDetails{
     @Id
     @Column(name = "username")
     private String username;
@@ -30,22 +30,14 @@ public class Member {
     @Column(name = "city")
     private String city;
     @Column(name = "zip")
-    private int zip;
+    private String zip;
     @Column(name = "approved")
     private boolean approved;
     @Column(name = "ranking")
     private int ranking;
 
-    @Column(name = "created")
-    @CreationTimestamp
-    private LocalDateTime created;
-
-    @Column(name = "lastEdited")
-    @UpdateTimestamp
-    private LocalDateTime lastEdited;
-
     public Member(String username, String email, String password, String firstName, String lastName,
-                  String street, String city, int zip, boolean approved, int ranking) {
+                  String street, String city, String zip) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -54,7 +46,5 @@ public class Member {
         this.street = street;
         this.city = city;
         this.zip = zip;
-        this.approved = approved;
-        this.ranking = ranking;
     }
 }

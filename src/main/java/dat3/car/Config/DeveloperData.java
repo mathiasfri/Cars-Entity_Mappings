@@ -6,13 +6,14 @@ import dat3.car.Repository.CarRepository;
 import dat3.car.Repository.MemberRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Controller
+@Configuration
 public class DeveloperData implements ApplicationRunner {
     CarRepository carRepository;
     MemberRepository memberRepository;
@@ -81,16 +82,26 @@ public class DeveloperData implements ApplicationRunner {
         carRepository.saveAll(cars);
 
         List<Member> members = new ArrayList<>(Arrays.asList(
-                new Member("user1", "user1@example.com", "password1", "John", "Doe", "123 Main St", "Cityville", 12345, true, 4),
-                new Member("user2", "user2@example.com", "password2", "Jane", "Smith", "456 Elm St", "Townsburg", 54321, false, 2),
-                new Member("user3", "user3@example.com", "password3", "Michael", "Johnson", "789 Oak Ave", "Metropolis", 67890, true, 5),
-                new Member("user4", "user4@example.com", "password4", "Emily", "Brown", "101 Pine Rd", "Villageville", 13579, false, 3),
-                new Member("user5", "user5@example.com", "password5", "David", "Williams", "222 Cedar Ln", "Townsville", 24680, true, 4),
-                new Member("user6", "user6@example.com", "password6", "Sarah", "Jones", "333 Maple Dr", "Suburbia", 98765, false, 1),
-                new Member("user7", "user7@example.com", "password7", "Christopher", "Wilson", "444 Birch Pl", "Citytown", 87654, true, 5),
-                new Member("user8", "user8@example.com", "password8", "Olivia", "Miller", "555 Oak St", "Villageton", 43210, false, 2),
-                new Member("user9", "user9@example.com", "password9", "James", "Davis", "666 Elm Ave", "Uptown", 54321, true, 3),
-                new Member("user10", "user10@example.com", "password10", "Emma", "Moore", "777 Pine Rd", "Downtown", 12345, false, 4)
+                new Member("user1", "user1@example.com", "password1", "John",
+                        "Doe", "123 Main St", "Cityville", "12345"),
+                new Member("user2", "user2@example.com", "password2", "Jane",
+                        "Smith", "456 Elm St", "Townsburg", "54321"),
+                new Member("user3", "user3@example.com", "password3", "Michael",
+                        "Johnson", "789 Oak Ave", "Metropolis", "67890"),
+                new Member("user4", "user4@example.com", "password4", "Emily",
+                        "Brown", "101 Pine Rd", "Villageville", "13579"),
+                new Member("user5", "user5@example.com", "password5", "David",
+                        "Williams", "222 Cedar Ln", "Townsville", "24680"),
+                new Member("user6", "user6@example.com", "password6", "Sarah",
+                        "Jones", "333 Maple Dr", "Suburbia", "98765"),
+                new Member("user7", "user7@example.com", "password7", "Christopher",
+                        "Wilson", "444 Birch Pl", "Citytown", "87654"),
+                new Member("user8", "user8@example.com", "password8", "Olivia",
+                        "Miller", "555 Oak St", "Villageton", "43210"),
+                new Member("user9", "user9@example.com", "password9", "James",
+                        "Davis", "666 Elm Ave", "Uptown", "54321"),
+                new Member("user10", "user10@example.com", "password10", "Emma",
+                        "Moore", "777 Pine Rd", "Downtown", "12345")
         ));
         memberRepository.saveAll(members);
     }

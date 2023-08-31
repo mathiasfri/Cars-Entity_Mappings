@@ -19,8 +19,10 @@ class MemberRepositoryTest {
     void setUp() {
         if (!isInitialized){
             memberRepository.deleteAll();
-            memberRepository.save(new Member("user1", "user1@example.com", "password1", "John", "Doe", "123 Main St", "Cityville", 12345, true, 4));
-            memberRepository.save(new Member("user2", "user2@example.com", "password2", "Jane", "Smith", "456 Elm St", "Townsburg", 54321, false, 2));
+            memberRepository.save(new Member("user1", "user1@example.com", "password1",
+                    "John", "Doe", "123 Main St", "Cityville", "12345"));
+            memberRepository.save(new Member("user2", "user2@example.com", "password2",
+                    "Jane", "Smith", "456 Elm St", "Townsburg", "54321"));
             isInitialized = true;
         }
     }

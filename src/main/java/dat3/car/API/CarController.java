@@ -36,6 +36,7 @@ public class CarController {
          return carService.addCar(body);
      }
 
+    //Security -> Admin
      @PutMapping("/{id}")
      ResponseEntity<Boolean> editCar(@RequestBody CarRequest body, @PathVariable int id){
          return carService.editCar(body, id);

@@ -69,4 +69,21 @@ public class CarService {
         Car car = getCarById(id);
         carRepository.delete(car);
     }
+
+    // TODO
+    public CarResponse findCarsWithBrand(){
+        return null;
+    }
+
+    public CarResponse findCarsNotReserved(){
+        return null;
+    }
+
+    public CarResponse findBestDiscount(){
+        return null;
+    }
+
+    public int findAverageCarPricePerDay(){
+        return 0;
+    }
 }

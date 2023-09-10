@@ -1,26 +1,22 @@
 package dat3.car.Entity;
 
+import dat3.car.API.ReservationController;
+import dat3.car.DTO.ReservationResponse;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Member extends AdminDetails{
-    @Id
-    @Column(name = "username")
-    private String username;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "password")
-    private String password;
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "USER_TYPE")
+public class Member extends dat3.security.entity.UserWithRoles {
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
@@ -36,11 +32,26 @@ public class Member extends AdminDetails{
     @Column(name = "ranking")
     private int ranking;
 
+    @OneToMany(mappedBy = "member")
+    List<Reservation> reservations = new ArrayList<>();
+
+    public void addReservation(Reservation reservation){
+        if (reservation == null){
+            reservations = new ArrayList<>();
+        }
+        reservations.add(reservation);
+    }
+
+    public List<ReservationResponse> getReservationsResponse(){
+        List<ReservationResponse> responses = reservations.stream().map(reservation ->
+                new ReservationResponse(reservation)).toList();
+
+        return responses;
+    }
+
     public Member(String username, String email, String password, String firstName, String lastName,
                   String street, String city, String zip) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
+        super(username, email, password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.street = street;

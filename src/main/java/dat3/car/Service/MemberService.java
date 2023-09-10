@@ -83,4 +83,9 @@ public class MemberService {
         return memberRepository.findById(username).
                 orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Member with this username does not exist"));
     }
+
+    // TODO
+    public MemberResponse findMembersWithReservation(){
+        return null;
+    }
 }

@@ -3,10 +3,13 @@ package dat3.car.DTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dat3.car.Entity.Member;
+import dat3.car.Entity.Reservation;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,6 +34,7 @@ public class MemberResponse {
     LocalDateTime edited;
     Integer ranking;
     Boolean approved;
+    List<ReservationResponse> responses = new ArrayList<>();
 
     //Convert Member Entity to Member DTO
     public MemberResponse(Member m, boolean includeAll) {
@@ -41,6 +45,7 @@ public class MemberResponse {
         this.lastName = m.getLastName();
         this.city = m.getCity();
         this.zip = m.getZip();
+        this.responses = m.getReservationsResponse();
         if(includeAll){
             this.created = m.getCreated();
             this.edited = m.getEdited();

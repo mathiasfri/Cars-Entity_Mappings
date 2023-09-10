@@ -85,7 +85,10 @@ public class MemberService {
     }
 
     // TODO
-    public MemberResponse findMembersWithReservation(){
-        return null;
+    public List<MemberResponse> findMembersWithReservation(boolean includeAll){
+        List<Member> members = memberRepository.findMemberByReservationsIsTrue();
+
+        List<MemberResponse> response = members.stream().map(member -> new MemberResponse(member, includeAll)).toList();
+        return response;
     }
 }

@@ -71,19 +71,36 @@ public class CarService {
     }
 
     // TODO
-    public CarResponse findCarsWithBrand(){
-        return null;
+    public List<CarResponse> findCarsByBrand(String brand, boolean includeAll){
+        List<Car> cars = carRepository.getCarByBrand(brand);
+
+        List<CarResponse> response = cars.stream().map(car -> new CarResponse(car, includeAll)).toList();
+        return response;
     }
 
-    public CarResponse findCarsNotReserved(){
-        return null;
+    public List<CarResponse> findCarsNotReserved(boolean includeAll){
+        List<Car> cars = carRepository.findByReservationsIsNull();
+
+        List<CarResponse> response = cars.stream().map(car -> new CarResponse(car, includeAll)).toList();
+        return response;
     }
 
-    public CarResponse findBestDiscount(){
-        return null;
+    public List<CarResponse> findBestDiscount(int bestDiscount, boolean includeAll){
+        List<Car> cars = carRepository.findByBestDiscount(bestDiscount);
+
+        List<CarResponse> response = cars.stream().map(car -> new CarResponse(car, includeAll)).toList();
+        return response;
     }
 
-    public int findAverageCarPricePerDay(){
-        return 0;
+    public double findAverageCarPricePerDay(){
+        List<Car> cars = carRepository.findAll();
+        double price = 0;
+
+        for (Car c : cars){
+            price += c.getPricePrDay();
+        }
+        double averagePrice = price / cars.size();
+
+        return averagePrice;
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class ReservationService {
@@ -43,7 +44,11 @@ public class ReservationService {
     }
 
     //TODO
-    public ReservationResponse findReservationsByMember(){
-        return null;
+    public List<ReservationResponse> findReservationsByMember(Member member){
+        List<Reservation> reservationList = reservationRepository.findByMember(member);
+
+        List<ReservationResponse> response = reservationList.stream().map(reservation ->
+                new ReservationResponse(reservation)).toList();
+        return response;
     }
 }

@@ -42,13 +42,6 @@ public class Member extends dat3.security.entity.UserWithRoles {
         reservations.add(reservation);
     }
 
-    public List<ReservationResponse> getReservationsResponse(){
-        List<ReservationResponse> responses = reservations.stream().map(reservation ->
-                new ReservationResponse(reservation)).toList();
-
-        return responses;
-    }
-
     public Member(String username, String email, String password, String firstName, String lastName,
                   String street, String city, String zip) {
         super(username, email, password);

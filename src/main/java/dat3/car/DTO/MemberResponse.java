@@ -34,7 +34,7 @@ public class MemberResponse {
     LocalDateTime edited;
     Integer ranking;
     Boolean approved;
-    List<ReservationResponse> responses = new ArrayList<>();
+    List<ReservationResponse> responses;
 
     //Convert Member Entity to Member DTO
     public MemberResponse(Member m, boolean includeAll) {
@@ -45,13 +45,22 @@ public class MemberResponse {
         this.lastName = m.getLastName();
         this.city = m.getCity();
         this.zip = m.getZip();
-        this.responses = m.getReservationsResponse();
+        this.responses = getReservations(m);
         if(includeAll){
             this.created = m.getCreated();
             this.edited = m.getEdited();
             this.approved = m.isApproved();
             this.ranking = m.getRanking();
         }
+    }
+
+    public List<ReservationResponse> getReservations(Member m){
+        List<Reservation> reservations = m.getReservations();
+
+        List<ReservationResponse> response = reservations.stream().map(reservation ->
+                new ReservationResponse(reservation)).toList();
+
+        return response;
     }
 }
 

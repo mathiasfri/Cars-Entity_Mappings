@@ -51,4 +51,13 @@ public class ReservationService {
                 new ReservationResponse(reservation)).toList();
         return response;
     }
+
+    public List<ReservationResponse> findAllReservations(){
+        List<Reservation> reservations = reservationRepository.findAll();
+
+        List<ReservationResponse> responses = reservations.stream().map(reservation ->
+                new ReservationResponse(reservation)).toList();
+
+        return responses;
+    }
 }

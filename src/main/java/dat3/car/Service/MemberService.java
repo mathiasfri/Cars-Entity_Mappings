@@ -83,12 +83,4 @@ public class MemberService {
         return memberRepository.findById(username).
                 orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Member with this username does not exist"));
     }
-
-    // TODO
-    public List<MemberResponse> findMembersWithReservation(boolean includeAll){
-        List<Member> members = memberRepository.findMemberByReservationsIsTrue();
-
-        List<MemberResponse> response = members.stream().map(member -> new MemberResponse(member, includeAll)).toList();
-        return response;
-    }
 }

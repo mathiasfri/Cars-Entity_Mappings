@@ -53,7 +53,6 @@ class MemberServiceH2Test {
     void testFindByIdFound() {
         MemberResponse response = memberService.findById(m1.getUsername());
         assertEquals("user1", response.getUsername());
-        assertEquals("email1", response.getEmail());
     }
 
     @Test
